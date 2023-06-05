@@ -11,10 +11,7 @@ function draw() {
       alien_landscape(x, y);
     }
   }
-
   noLoop();
-
-  save ("alienlandscape.png");
 }
 
 function alien_landscape(x, y) {
