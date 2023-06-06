@@ -21,12 +21,21 @@ for (let x = 270; x < width-270; x +=s ){
 }
 
 function drawRect(x,y){
-	//let translateBy = random(-maxTranslate, maxTranslate) * y/height;
-	//let rotateBy = random(-maxRotate, maxRotate) * y/height;
+	
 	let h = 120 + y/8;
 	push();
 	translate (x,y);
-	//rotate(rotateBy)
+	
+	let translateBy = random(-maxTranslate, maxTranslate) * y/height;
+	let rotateBy = random(-maxRotate, maxRotate) * y/height;
+	
+	// filled option;
+	//let h = 180 + (rotateBy *3);
+	//stroke (h,0,100, 0.8);
+	//fill (h,100,100,0.9);
+	
+	translate (rotateBy, rotateBy);
+	rotate(rotateBy)
 	stroke (h,100,100);
 	strokeWeight(4);
 	noFill();
