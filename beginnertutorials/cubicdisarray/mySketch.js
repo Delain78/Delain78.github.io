@@ -1,39 +1,45 @@
 // based on cubic disarray of Georg Nees
 
-let steps = 12;
+let s = 45; // width/24
 
 // Max amount to rotate cells by (degrees).
-var maxRotate = 30
+let  maxRotate = 30;
 
 // Max amount to translate cells by.
-var maxTranslate = 15
+let maxTranslate = 15;
 
 function setup() {
-	createCanvas(800, 800);
+	createCanvas(1080, 1080);
 	background(0);
 	colorMode(HSB);
 	
-	for (let j = 1; j < 2*steps-1; j++){
-		for (let i = 6; i < steps +6; i++){
-			drawSqaure(i,j);
-		}
+for (let x = 270; x < width-270; x +=s ){
+	for (let y = 45; y < height-45; y +=s){
+			drawRect(x,y);
+	}
 	}
 }
 
-function drawSqaure(i,j){
-	let s = width/(steps*2);
-	let x = i * s;
-	let y = j * s;
-	let translateBy = random(-maxTranslate, maxTranslate) * y/height;
-	let rotateBy = random(-maxRotate, maxRotate) * y/height;
-	let h = 120 + y/7;
+function drawRect(x,y){
+	
+	let h = 120 + y/8;
 	push();
 	translate (x,y);
-	//rotate(rotateBy)
+	
+	let translateBy = random(-maxTranslate, maxTranslate) * y/height;
+	let rotateBy = random(-maxRotate, maxRotate) * y/height;
+	
+	// filled option;
+	//let h = 180 + (rotateBy *3);
+	//stroke (h,0,100, 0.8);
+	//fill (h,100,100,0.9);
+	
+	translate (rotateBy, rotateBy);
+	rotate(rotateBy)
 	stroke (h,100,100);
 	strokeWeight(4);
 	noFill();
-	square(0,0,s);
+	rect(0,0,s,s);
 	pop();
 }
 
@@ -41,6 +47,6 @@ function drawSqaure(i,j){
 
 function keyPressed() {
   if (key === 's') {
-    save('watercolorbackground.png'); 
+    save('cubicdisarray.png'); 
   }
 }
