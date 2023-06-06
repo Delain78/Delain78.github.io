@@ -1,36 +1,29 @@
-// based on steve's makerspace tutorial on youtube
-
-let space = 70;
-let frame = 30;
-let points = [];
-let vary = 8;
-let buff = 0.3;
+let space;
+let points =[];
+let step = 7;
 
 function setup() {
 	createCanvas(400,400);
 	background(220);
 	strokeWeight(4);
 	
-	let buff2 = space * buff;
-	let wNumb = floor((width-frame *2)/space) + 1;
-	let extraW = round(width-wNumb*space-frame*2); 
-	let extraH = round(height-wNumb*space-frame*2);
-	for (y = frame + extraH; y < height-frame; y +=space){
-		for (x = frame + extraW; x < width -frame; x +=space){
-			points.push (createVector(x + random(-vary,vary),y + random (-vary,vary)));
-			if (y > space + frame -1 && x > space + frame -1){
-			let pos = points.length -1;
-			fill(random(255), random(255), random(255));
-			quad(points[pos].x,
-          points[pos].y,
-          points[pos - 1].x,
-          points[pos - 1].y,
-          points[pos - wNumb - 1].x,
-          points[pos - wNumb - 1].y,
-          points[pos - wNumb].x,
-          points[pos - wNumb].y)
-			}
+let space = width/step;
+for (let j = 0.5; j < step; j ++){
+	if (j % 2==0.5){
+		for (let i = 1; i <step; i ++){
+			let x = space * i;
+			let y = space * j;
+			point(x,y);
+			points.push (createVector(x,y));
 		}
+	} else if (j % 2==1.5){
+		for (let i = 0.5; i <step; i ++){
+			let x = space * i;
+			let y = space * j;
+			point(x,y);
+			points.push (createVector(x,y));
+		}
+	}
 	}
 }
 
