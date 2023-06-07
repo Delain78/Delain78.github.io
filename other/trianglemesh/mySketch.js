@@ -1,12 +1,12 @@
 let space;
 let points = [];
 let pos = [];
-let step = 14;
+let step = 15;
 let maxVary = 15;
 
 function setup() {
   createCanvas(1080, 1080);
-  background(0);
+  background(175);
   colorMode(HSB);
   strokeWeight(4);
 
@@ -15,25 +15,21 @@ function setup() {
   for (let j = 1; j < step; j++) {
     for (let i = 1; i < step; i++) {
       let xoff = 0;
-      if (j % 2 == 1) {
-        xoff = space / 2;
-      }
+      //if (j % 2 == 1) {
+        //xoff = space / 2;
+      //}
      
-      let x = space * i + xoff + random(-maxVary, maxVary);
-      let y = space * j + random(-maxVary, maxVary);
-			 points.push(createVector(x, y));
+      let x = space * i + xoff //+ random(-maxVary, maxVary);
+      let y = space * j //+ random(-maxVary, maxVary);
+			//point(x,y);
+			points.push(createVector(x, y));
 			
-			let xoff2 = 0;
-      let n = noise(xoff2);
-      let h = map(n, 0, 1, 0, 350);
-      //let h = 120 + y/9;
-      //let h = random (120,240);
-			
-      //point(x,y);
-     
-      let pos = points.length - 1;
+			let h = 120 + 150* noise(x,y);
 			stroke(h, 0, 100);
       fill(h, 100, 100, 0.8);
+    
+      let pos = points.length - 1;
+		
       if (pos > step - 1 && j % 2 == 0 && i >= 2) {
         triangle(
           points[pos].x,
