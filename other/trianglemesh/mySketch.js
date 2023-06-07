@@ -10,7 +10,7 @@ function setup() {
   colorMode(HSB);
   strokeWeight(4);
 
-	let frame = 67.5;
+let frame = 67.5; //same as space
   let space = (width-(frame*2)) / step;
 
   for (let j = 1; j < step; j++) {
