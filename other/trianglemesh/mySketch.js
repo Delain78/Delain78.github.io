@@ -1,30 +1,31 @@
 let space;
 let points = [];
 let pos = [];
-let step = 15;
+let step = 12;
 let maxVary = 15;
 
 function setup() {
   createCanvas(1080, 1080);
-  background(175);
+  background(0);
   colorMode(HSB);
   strokeWeight(4);
 
-  let space = width / step;
+	let frame = 67.5;
+  let space = (width-(frame*2)) / step;
 
   for (let j = 1; j < step; j++) {
     for (let i = 1; i < step; i++) {
       let xoff = 0;
-      //if (j % 2 == 1) {
-        //xoff = space / 2;
-      //}
+      if (j % 2 == 1) {
+        xoff = space / 2;
+      }
      
-      let x = space * i + xoff //+ random(-maxVary, maxVary);
-      let y = space * j //+ random(-maxVary, maxVary);
+      let x =	frame * 3/4 + space * i + xoff + random(-maxVary, maxVary);
+      let y = frame + space * j + random(-maxVary, maxVary);
 			//point(x,y);
 			points.push(createVector(x, y));
 			
-			let h = 120 + 150* noise(x,y);
+			let h = 100 + 200* noise(x,y);
 			stroke(h, 0, 100);
       fill(h, 100, 100, 0.8);
     
