@@ -4,7 +4,7 @@ let space;
 let points =[];
 let pos = [];
 let step = 14;
-
+ 
 function setup() {
 	createCanvas(1080,1080);
 	background(220);
