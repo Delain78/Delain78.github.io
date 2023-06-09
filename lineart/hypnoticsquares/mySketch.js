@@ -2,27 +2,35 @@
 
 let sizeStart;
 let finalSize = 3;
-let totalSteps = 5;
+let totalSteps;
+let offset = 90 // 180/2
 
 function setup() {
-	createCanvas(500, 500);
-	background(175);
+	createCanvas(1080, 1080);
+	background(0);
 	colorMode(HSB);
 	 
 	sizeStart = 100;
+
 	
-//for (let x = 0; x < width; x +=s ){
-	//for (let y =0; y < height; y +=s){
-			drawSquare(0,0,sizeStart, 1, 1, totalSteps);
-	//}
-	//}
+for (let x = offset; x < width - offset; x +=sizeStart ){
+	for (let y =offset; y < height - offset; y +=sizeStart){
+			let startSteps = [3,4,5];
+			totalSteps = random(startSteps);
+			let directions = [-1,0,1];
+			let xDirection = random(directions) ;
+			let yDirection = random(directions);
+			drawSquare(x,y,sizeStart, xDirection, yDirection, totalSteps);
+	}
+}
 }
 
 function drawSquare(x,y,size, xMove, yMove, steps){
 	let h = 120 + y/9;
 	stroke(h,100,100);
 	strokeWeight(3);
-	noFill();
+	fill(h,100,100,0.1);
+	//noFill();
 
   square(x, y, size);
 
@@ -44,6 +52,6 @@ function drawSquare(x,y,size, xMove, yMove, steps){
 
 function keyPressed() {
   if (key === 's') {
-    save('cubicdisarray.png'); 
+    save('hypnoticsqaures.png'); 
   }
 }
