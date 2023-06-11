@@ -1,4 +1,5 @@
 let rectangles =[];
+let step = 6;
 
 function setup() {
   createCanvas(1080, 1080);
@@ -15,22 +16,23 @@ function setup() {
 		let rectStart = new Rectangle(x,y,w,h)
  		 rectangles.push(rectStart) 	
 		pop ()
-	
+
+	//split on w/2, but wat happens when you split w/4
 	for (let i=rectangles.length-1; i >= 0; i--){
-		if (w == 850){
 			rectangles.splice(i,1)
-			let rectAX = new Rectangle (x,y,w/2,h)
-			let rectBX = new Rectangle (x + w/2,y,w/2,h)
-			rectangles.push(rectAX) 
-			rectangles.push(rectBX) 
-		}		
-		if (h == 850){
-			rectangles.splice(i,1)
-			let rectAY = new Rectangle (x,y,w,h/2)
-			let rectBY = new Rectangle (x,y + h/2,w,h/2)
-			rectangles.push(rectAY) 
-			rectangles.push(rectBY) 
-		}
+			for (let j = 1; j < step; j ++){
+			//split vertical
+				let rectAX = new Rectangle (x,y,w * j/step,h)
+				let rectBX = new Rectangle (x + w * j/step,y,w * (step-j)/step,h)
+				rectangles.push(rectAX) 
+				rectangles.push(rectBX) 
+	
+			// split horizontal
+				let rectAY = new Rectangle (x,y,w,h * j/step)
+				let rectBY = new Rectangle (x,y + h * j/step,w,h * (step - j)/step)
+				rectangles.push(rectAY) 
+				rectangles.push(rectBY) 
+			}
 	}
 }
 
@@ -48,4 +50,3 @@ function keyPressed() {
     save('vicsekfractal.png'); 
   }
 }
-
