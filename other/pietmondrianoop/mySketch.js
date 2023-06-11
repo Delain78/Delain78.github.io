@@ -17,7 +17,7 @@ function setup() {
  		 rectangles.push(rectStart) 	
 		pop ()
 
-	//split on w/2, but wat happens when you split w/4
+	//split on w/6
 	for (let i=rectangles.length-1; i >= 0; i--){
 			rectangles.splice(i,1)
 			for (let j = 1; j < step; j ++){
@@ -50,3 +50,4 @@ function keyPressed() {
     save('vicsekfractal.png'); 
   }
 }
+
